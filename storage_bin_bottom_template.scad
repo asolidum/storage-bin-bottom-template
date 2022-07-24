@@ -25,11 +25,11 @@ module line(height, width, length) {
     cube([width, length, height], true);
 }
 
-module crosshair(line_height, line_width, node_diameter, box_length, box_width) {
+module crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width) {
     
     // X = length
     // Y = width
-    node(line_height, line_width, node_diameter);
+    node(line_height, node_line_width, node_diameter);
     
     // Right line
     x_offset = node_diameter/2+box_length/4;
@@ -56,7 +56,7 @@ module create_row(num_cols) {
     for (col = [ 0 : num_cols-1]) {
         offset = (node_diameter+box_length)*col;
         translate([offset, 0, 0]) {
-            crosshair(line_height, line_width, node_diameter, box_length, box_width);
+            crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width);
         }
     }
 }
