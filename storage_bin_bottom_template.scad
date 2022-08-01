@@ -12,6 +12,8 @@ num_cols = 3;
 padding = 0.5;
 
 function is_odd(num) = (num % 2) == 1;
+function crosshair_length() = node_diameter+box_length;
+function crosshair_width() = node_diameter+box_width;
 
 module node(height, width, diameter) {
     difference() {
@@ -55,7 +57,7 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
 
 module create_row(num_cols) {
     for (col = [ 0 : num_cols-1]) {
-        offset = (node_diameter+box_length)*col;
+        offset = crosshair_length()*col;
         translate([offset, 0, 0]) {
             crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width);
         }
@@ -64,7 +66,7 @@ module create_row(num_cols) {
 
 translate([0,0, -line_height-1]) {
     for (row = [0 : num_rows-1]) {
-        offset = (node_diameter+box_width)*row;
+        offset = crosshair_width()*row;
         translate([0, offset, 0]) {
             create_row(num_cols);
         }
