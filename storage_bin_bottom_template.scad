@@ -64,11 +64,9 @@ module create_row(num_cols) {
     }
 }
 
-translate([0,0, -line_height-1]) {
     for (row = [0 : num_rows-1]) {
         offset = crosshair_width()*row;
         translate([0, offset, 0]) {
             create_row(num_cols);
         }
     }
-}
