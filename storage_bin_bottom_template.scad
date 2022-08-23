@@ -11,6 +11,10 @@ num_cols = 3;
 
 padding = 0.5;
 
+dovetail_basewidth = line_width - 2.5;
+dovetail_tailwidth = line_width - 1.5;
+dovetail_length = 2;
+
 function is_odd(num) = (num % 2) == 1;
 function crosshair_length() = node_diameter+box_length;
 function crosshair_width() = node_diameter+box_width;
@@ -52,6 +56,31 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
     // Bottom Line
     translate([0, -y_offset, line_height/2]) {
         line(line_height, line_width, box_width/2+padding);
+module line_tail(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
+    padding = .001;
+
+    union() {
+        cube([width, length, height], true);
+        translate([0, (length+dovetail_length)/2, -height/2]) {
+            rotate([0, 0, -90]) {
+                dovetail(height, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+            }
+        }
+    }
+}
+
+module line_socket(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
+    padding = .001;
+    
+    difference() {
+        cube([width, length, height], true);        
+        translate([0, (length-dovetail_length+padding)/2, -(height+1)/2]) {
+            rotate([0, 0, 90]) {
+                dovetail(height+1, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+            }
+        }
+    }
+}
 
 module dovetail(height, base_width, tail_width, length) {
     linear_extrude(height) {
