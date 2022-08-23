@@ -97,11 +97,11 @@ module dovetail(height, base_width, tail_width, length) {
     }
 }
 
-module create_row(num_cols) {
+module create_row(num_cols, line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
     for (col = [ 0 : num_cols-1]) {
         offset = crosshair_length()*col;
         translate([offset, 0, 0]) {
-            crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width);
+            crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length);            
         }
     }
 }
@@ -109,6 +109,6 @@ module create_row(num_cols) {
     for (row = [0 : num_rows-1]) {
         offset = crosshair_width()*row;
         translate([0, offset, 0]) {
-            create_row(num_cols);
+            create_row(num_cols, line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
         }
     }
