@@ -52,6 +52,10 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
     // Bottom Line
     translate([0, -y_offset, line_height/2]) {
         line(line_height, line_width, box_width/2+padding);
+
+module dovetail(height, base_width, tail_width, length) {
+    linear_extrude(height) {
+        polygon([[length/2, base_width/2], [length/2, -base_width/2], [-length/2, -tail_width/2], [-length/2, tail_width/2]]);
     }
 }
 
