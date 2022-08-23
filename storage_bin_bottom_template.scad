@@ -32,7 +32,7 @@ module line(height, width, length) {
     cube([width, length, height], true);
 }
 
-module crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width) {
+module crosshair(line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
     
     // X = length
     // Y = width
@@ -41,21 +41,30 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
     // Right line
     x_offset = node_diameter/2+box_length/4;
     translate([x_offset, 0, line_height/2]) {
-        line(line_height, box_length/2+padding, line_width);
+        rotate([0, 0, 270]) {
+            line_tail(line_height, line_width, box_length/2+padding, , dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+        }
     }
     // Left line
     translate([-x_offset, 0, (line_height/2)]) {
-        line(line_height, box_length/2+padding, line_width);
+        rotate([0, 0, 90]) {
+            line_socket(line_height, line_width, box_length/2+padding, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+        }
     }
     
     // Top line
     y_offset = node_diameter/2+box_width/4;
     translate([0, y_offset, line_height/2]) {
-        line(line_height, line_width, box_width/2+padding);
+        line_tail(line_height, line_width, box_width/2+padding, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
     }
     // Bottom Line
     translate([0, -y_offset, line_height/2]) {
-        line(line_height, line_width, box_width/2+padding);
+        rotate([0, 0, 180]) {
+            line_socket(line_height, line_width, box_width/2+padding, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+        }
+    }
+}
+
 module line_tail(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
     padding = .001;
 
