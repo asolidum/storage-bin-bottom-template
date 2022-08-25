@@ -42,7 +42,7 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
     x_offset = node_diameter/2+box_length/4;
     translate([x_offset, 0, line_height/2]) {
         rotate([0, 0, 270]) {
-            line_tail(line_height, line_width, box_length/2+padding, , dovetail_basewidth, dovetail_tailwidth, dovetail_length);
+            line_tail(line_height, line_width, box_length/2+padding, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
         }
     }
     // Left line
