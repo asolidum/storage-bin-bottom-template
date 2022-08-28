@@ -65,9 +65,7 @@ module crosshair(line_height, line_width, node_diameter, node_line_width, box_le
     }
 }
 
-module line_tail(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
-    padding = .001;
-
+module line_tail(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {    
     union() {
         cube([width, length, height], true);
         translate([0, (length+dovetail_length)/2, -height/2]) {
@@ -79,11 +77,9 @@ module line_tail(height, width, length, dovetail_basewidth, dovetail_tailwidth, 
 }
 
 module line_socket(height, width, length, dovetail_basewidth, dovetail_tailwidth, dovetail_length) {
-    padding = .001;
-    
     difference() {
         cube([width, length, height], true);        
-        translate([0, (length-dovetail_length+padding)/2, -(height+1)/2]) {
+        translate([0, (length-dovetail_length)/2, -(height+1)/2]) {
             rotate([0, 0, 90]) {
                 dovetail(height+1, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
             }
