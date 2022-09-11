@@ -1,13 +1,14 @@
 $fn = 100;
 
+num_rows = 3;
+num_cols = 3;
+
 line_height = 3;
 line_width = 4;
 node_diameter = 22;
 node_line_width = 2;
 box_length = 18;
 box_width = 33;
-num_rows = 3;
-num_cols = 3;
 
 padding = 0.5;
 
