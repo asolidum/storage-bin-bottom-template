@@ -103,9 +103,10 @@ module create_row(num_cols, line_height, line_width, node_diameter, node_line_wi
     }
 }
 
-    for (row = [0 : num_rows-1]) {
-        offset = crosshair_width()*row;
-        translate([0, offset, 0]) {
-            create_row(num_cols, line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
-        }
+for (row = [0 : num_rows-1]) {
+    offset = crosshair_width()*row;
+    translate([0, offset, 0]) {
+        create_row(num_cols, line_height, line_width, node_diameter, node_line_width, box_length, box_width, dovetail_basewidth, dovetail_tailwidth, dovetail_length);
     }
+}
+
