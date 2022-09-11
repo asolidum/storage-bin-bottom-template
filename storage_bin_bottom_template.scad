@@ -110,3 +110,4 @@ for (row = [0 : num_rows-1]) {
     }
 }
 
+echo("Dimensions: ", (crosshair_length()*num_cols)+dovetail_length, "x", (crosshair_width()*num_rows)+dovetail_length);
