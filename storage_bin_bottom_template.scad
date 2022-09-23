@@ -4,14 +4,14 @@ num_rows = 3;
 num_cols = 3;
 
 line_height = 3;
-line_width = 4;
-node_diameter = 22;
+line_width = 6;
+node_diameter = 24;
 node_line_width = 2;
-box_length = 18;
-box_width = 33;
+box_length = 16;
+box_width = 31;
 
-dovetail_basewidth = line_width - 2.5;
-dovetail_tailwidth = line_width - 1.5;
+dovetail_basewidth = line_width - 4;
+dovetail_tailwidth = line_width - 3;
 dovetail_length = 2;
 
 function is_odd(num) = (num % 2) == 1;
